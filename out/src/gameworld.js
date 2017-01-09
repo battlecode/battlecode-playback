@@ -75,6 +75,7 @@ var GameWorld = (function () {
             green: new Int32Array(0),
             blue: new Int32Array(0)
         }, 'id');
+        this.logs = '';
         this.turn = 0;
         this.minCorner = new Victor(0, 0);
         this.maxCorner = new Victor(0, 0);
@@ -195,6 +196,8 @@ var GameWorld = (function () {
         // Insert indicator dots and lines
         this.insertIndicatorDots(delta);
         this.insertIndicatorLines(delta);
+        // Extract logs
+        this.logs = delta.logs(battlecode_schema_1.flatbuffers.Encoding.UTF16_STRING);
     };
     GameWorld.prototype.insertDiedBodies = function (delta) {
         // Delete the died bodies from the previous round

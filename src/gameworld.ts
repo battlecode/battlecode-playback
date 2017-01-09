@@ -146,6 +146,11 @@ export default class GameWorld {
   indicatorLines: StructOfArrays<IndicatorLinesSchema>;
 
   /**
+   * Player logs.
+   */
+  logs: string;
+
+  /**
    * The current turn.
    */
   turn: number;
@@ -250,6 +255,7 @@ export default class GameWorld {
       blue: new Int32Array(0)
     }, 'id');
 
+    this.logs = '';
     this.turn = 0;
     this.minCorner = new Victor(0, 0);
     this.maxCorner = new Victor(0, 0);
@@ -388,6 +394,9 @@ export default class GameWorld {
     // Insert indicator dots and lines
     this.insertIndicatorDots(delta);
     this.insertIndicatorLines(delta);
+
+    // Extract logs
+    this.logs = <string>delta.logs(flatbuffers.Encoding.UTF16_STRING);
   }
 
   private insertDiedBodies(delta: schema.Round) {
