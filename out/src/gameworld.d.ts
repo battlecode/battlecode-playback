@@ -99,6 +99,10 @@ export default class GameWorld {
      */
     indicatorLines: StructOfArrays<IndicatorLinesSchema>;
     /**
+     * Player logs.
+     */
+    logs: string;
+    /**
      * The current turn.
      */
     turn: number;
